@@ -1,0 +1,67 @@
+SQL Basics: Repeat and Reverse:
+SELECT REPEAT(name, 3) AS name, REVERSE(characteristics) AS characteristics
+FROM monsters;
+
+Easy SQL: Cube Root and Natural Log :
+SELECT cbrt(number1) AS cuberoot, ln(number2) AS logarithm FROM decimals;
+
+SQL Basics: Up and Down:
+SELECT
+CASE
+  WHEN (SUM(number1))%2 = 0 THEN MAX(number1)
+  ELSE MIN(number1)
+END AS number1,
+CASE
+  WHEN (SUM(number2))%2 = 0 THEN MAX(number2)
+  ELSE MAX(number2)
+END AS number2
+FROM numbers;
+
+SQL Basics: Create a FUNCTION:
+CREATE FUNCTION increment(i integer) RETURNS integer
+AS 'select $1 + 1;'
+LANGUAGE sql;
+
+Hello SQL World!:
+SELECT 'hello world!' as "Greeting
+
+SQL: Concatenating Columns:
+SELECT concat_ws(' ', prefix,first,last,suffix) AS title FROM names;
+or 
+SELECT prefix || ' ' || first || ' ' || last || ' ' || suffix AS title
+FROM names;
+
+SQL Basics - Position :
+SELECT id, name, POSITION(',' IN characteristics) AS comma
+FROM monsters
+ORDER BY comma;
+
+Best-Selling Books (SQL for Beginners #5):
+SELECT *
+FROM books
+ORDER BY copies_sold DESC 
+LIMIT 5;
+
+Easy SQL: Counting and Grouping:
+SELECT race, COUNT(*) AS count
+FROM demographics
+GROUP BY race 
+ORDER BY count DESC
+
+SQL Basics: Simple GROUP BY:
+SELECT age, count(*) as people_count from people group by age;
+
+SQL Basics: Simple JOIN with COUNT:
+SELECT 
+  people.*, count(toys.id) as toy_count
+FROM 
+  people 
+  JOIN toys 
+  on people.id = toys.people_id
+GROUP BY people.id
+
+SQL Basics: Simple JOIN:
+
+
+
+
