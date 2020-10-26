@@ -1,0 +1,59 @@
+Easy SQL: Convert to Hexadecimal:
+SELECT to_hex(legs) as legs,
+to_hex(arms) as arms
+from monsters;
+
+Easy SQL: Rounding Decimals:
+SELECT
+  FLOOR(number1) as number1,
+  CEIL(number2) as number2
+FROM decimals;
+
+SQL Basics: Mod:
+SELECT MOD(number1, number2)
+FROM decimals
+
+Easy SQL - Ordering:
+SELECT *
+FROM companies
+ORDER BY employees DESC
+
+Easy SQL: LowerCase:
+SELECT id, name, birthday, Lower(race) as race
+FROM demographics
+
+Collect Tuition (SQL for Beginners #4):
+SELECT * 
+FROM students
+WHERE tuition_received = false
+
+Register for the Party (SQL for Beginners #3):
+INSERT INTO participants VALUES ('Paul', 18, true);
+SELECT * FROM participants;
+
+On the Canadian Border (SQL for Beginners #2):
+SELECT name, country
+FROM travelers
+WHERE country NOT IN ('USA', 'Canada', 'Mexico')
+
+Adults only (SQL for Beginners #1):
+SELECT name,age 
+FROM users
+WHERE age>=18
+
+1. Find all active students:
+SELECT * FROM students
+WHERE IsActive =1;
+
+SQL Basics: Simple MIN / MAX :
+SELECT MIN(age) as age_min,MAX(age) as age_max  FROM people;
+
+SQL Basics: Simple SUM:
+SELECT SUM(age) as age_sum FROM people;
+
+SQL Grasshopper: Select Columns:
+SELECT custid, custname, custstate FROM customers;
+
+SQL Basics: Simple DISTINCT:
+SELECT DISTINCT age
+FROM people
