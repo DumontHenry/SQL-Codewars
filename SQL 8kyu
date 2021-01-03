@@ -67,3 +67,52 @@ Select -number AS res FROM opposite;
 
 SQL Subtract the Sum:
 SELECT 'apple' res FROM sub_sum
+
+SQL Beginner Series #2 Clock:
+SELECT  ((h*60 + m)*60+ s )*1000 as res
+FROM past
+
+SQL Century From Year:
+SELECT CEILING(yr/100.00) AS Century
+FROM years
+
+SQL Expressions Matter:
+SELECT Greatest ( a*(b+c ), a * b * c, (a + b) * c, a + b + c ) AS res FROM expression_matter;
+
+SQL Is n divisible by x and y? :
+-- you will be given a table 'kata' with columns 'n', 'x', and 'y'. 
+--Return the 'id' and your result in a column named 'res'.
+
+CREATE FUNCTION isDivisible(n int, x int, y int)
+RETURNS boolean AS $$
+BEGIN
+IF (mod(n, x) = 0 AND mod(n, y) = 0) THEN
+  RETURN True;
+ELSE
+  RETURN False;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+SELECt id, isDivisible(n, x, y) AS res FROM kata
+
+SQL Grasshopper - Check for factor:
+SELECT
+  id,
+
+CASE 
+  WHEN base % factor = 0 
+    THEN 
+      TRUE 
+    ELSE 
+      FALSE 
+END AS res
+  
+FROM kata
+
+SQL Grasshopper - Messi goals function :
+SELECT (la_liga_goals + copa_del_rey_goals + champions_league_Goals) as res
+  FROM goals;
+  
+
+
+
