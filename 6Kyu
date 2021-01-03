@@ -1,0 +1,55 @@
+SQL Basics: Top 10 customers by total payments amount
+SELECT
+  c.customer_id,
+  c.email,
+  COUNT(*) AS payments_count,
+  SUM(p.amount)::float AS total_amount
+FROM customer AS c
+INNER JOIN payment AS p ON p.customer_id = c.customer_id
+GROUP BY c.customer_id
+ORDER BY total_amount DESC
+LIMIT 10
+
+SQL Basics: Simple JOIN and RANK
+SELECT
+  RANK() OVER(ORDER BY sale_count DESC) AS sale_rank,
+  people_sales.*
+FROM (
+  SELECT
+    people.id AS id,
+    people.name AS name,
+    COUNT(sales.id) AS sale_count
+  FROM people
+  JOIN sales ON people.id = sales.people_id
+  GROUP BY people.id
+) AS people_sales
+
+SQL Basics: Simple UNION ALL
+SELECT 'US' AS location, * 
+FROM ussales 
+WHERE price > 50
+UNION ALL
+SELECT 'EU' AS location, * 
+FROM eusales 
+WHERE price > 50;
+
+SQL Basics: Simple EXISTS
+SELECT id, name
+FROM departments
+WHERE EXISTS (
+    SELECT price 
+    FROM sales 
+    WHERE department_id = departments.id AND price >= 98.00);
+
+SQL Basics: Simple HAVING
+SELECT age, COUNT(*) AS total_people
+FROM people
+GROUP BY age
+HAVING COUNT(*) >= 10;
+
+SQL Basics: Simple IN
+SELECT id, name
+FROM departments
+WHERE id IN (SELECT department_id FROM sales 
+                WHERE (price) > 98.00);
+                
