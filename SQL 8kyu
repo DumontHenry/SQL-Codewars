@@ -65,3 +65,5 @@ FROM cycling
 SQL Opposite number:
 Select -number AS res FROM opposite;
 
+SQL Subtract the Sum:
+SELECT 'apple' res FROM sub_sum
