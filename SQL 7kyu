@@ -62,6 +62,24 @@ GROUP BY people.id
 
 SQL Basics: Simple JOIN:
 
+SELECT products.*, companies.name AS company_name
+FROM products
+INNER JOIN companies ON products.company_id = companies.id;
+
+SQL Basics - Trimming the Field:
+SELECT id, name, 
+  split_part(characteristics, ',', 1) AS characteristic
+FROM monsters ORDER BY id
+
+SQL Basics: Up and Down:
+
+select 
+  case when sum(number1)%2=1 then min(number1) else max(number1) end as number1, 
+  case when sum(number2)%2=1 then min(number2) else max(number2) end as number2
+  from numbers
+  
+
+
 
 
 
