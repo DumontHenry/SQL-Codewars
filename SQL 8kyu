@@ -57,3 +57,11 @@ SELECT custid, custname, custstate FROM customers;
 SQL Basics: Simple DISTINCT:
 SELECT DISTINCT age
 FROM people
+
+SQL Keep Hydrated!:
+SELECT  id, hours, Floor(hours/2) as liters
+FROM cycling
+
+SQL Opposite number:
+Select -number AS res FROM opposite;
+
