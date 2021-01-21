@@ -52,4 +52,61 @@ SELECT id, name
 FROM departments
 WHERE id IN (SELECT department_id FROM sales 
                 WHERE (price) > 98.00);
-                
+
+SQL Basics: Create a FUNCTION (DATES)
+CREATE FUNCTION agecalculator(age DATE) RETURNS INTEGER AS $$
+BEGIN
+    return date_part('year', AGE(age));
+END 
+$$ LANGUAGE plpgsql;
+
+SQL Basics: Simple FULL TEXT SEARCH
+SELECT *
+FROM product
+  WHERE to_tsvector(name) @@ to_tsquery('Awesome');
+  
+SQL: Conditional Count
+ SELECT DATE_PART('month', payment_date) AS month
+       , COUNT(payment)      AS total_count
+       , SUM(payment.amount) AS total_amount
+       , COUNT(payment)      FILTER (WHERE staff_id = 1) AS mike_count
+       , SUM(payment.amount) FILTER (WHERE staff_id = 1) AS mike_amount
+       , COUNT(payment)      FILTER (WHERE staff_id = 2) AS jon_count
+       , SUM(payment.amount) FILTER (WHERE staff_id = 2) AS jon_amount
+    FROM payment
+GROUP BY month
+ORDER BY month
+
+SQL: Calculating Batting Average
+SELECT
+  player_name,
+  games,
+  CAST(ROUND(hits / at_bats::numeric, 3) AS text) AS batting_average
+FROM yankees
+WHERE at_bats > 100
+ORDER BY batting_average DESC;
+
+SQL: Regex AlphaNumeric Split
+SELECT 
+    project, 
+    regexp_replace(address, '\d', '', 'g') AS letters,
+    regexp_replace(address, '\D', '', 'g') AS numbers
+FROM repositories
+
+SQL Basics: Simple PIVOTING data WITHOUT CROSSTAB
+SELECT
+    p.name,
+    COUNT((CASE when detail = 'good' then detail end)) AS "good",
+    COUNT((CASE when detail = 'ok' then detail end)) AS "ok",
+    COUNT((CASE when detail = 'bad' then detail end)) AS "bad"
+FROM
+   details d,
+   products p
+WHERE p.id = d.product_id
+GROUP BY 
+    name
+ORDER BY 
+    name
+
+
+
